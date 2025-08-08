@@ -1,0 +1,28 @@
+# Kalman Filter and Tracker Configuration
+
+filter_type: "kf"  # Choose between 'kf' (Kalman Filter) and 'ekf' (Extended Kalman Filter)
+
+dt: 0.1  # Default time step (seconds) between frames
+
+initial_state: [0, 0, 0, 0, 0, 0]  # Initial state vector for new trackers [x, y, z, vx, vy, vz]
+initial_covariance: 1000  # Initial covariance value to be set in diagonal of covariance matrix P0
+
+process_noise: 0.01  # Process noise covariance (Q) for state prediction
+measurement_noise: 0.1  # Measurement noise covariance (R) for measurement updates
+
+# Confirmation parameters: a track will be confirmed if it is associated with at least 'a' frames in the last 'b' consecutive frames
+confirmation_frames_needed: 3  # Minimum 'a' frames for confirmation
+confirmation_window: 7  # Window 'b' frames over which the confirmation check is made
+
+# Deletion parameters: a track will be deleted if it is not associated for at least 'c' frames in the last 'd' consecutive frames
+deletion_missed_threshold: 4  # Minimum 'c' missed frames for deletion
+deletion_window: 6  # Window 'd' frames over which the deletion check is made
+
+cost_threshold: 2.5  # Threshold for distance-based cost during data association (Hungarian algorithm)
+distance_threshold: 1.0  # Distance threshold to consider detections as duplicates
+
+plot_limits:
+  x_min: -30  # Minimum limit for x-axis in plot
+  x_max: 62   # Maximum limit for x-axis in plot
+  y_min: -50  # Minimum limit for y-axis in plot
+  y_max: 55   # Maximum limit for y-axis in plot
